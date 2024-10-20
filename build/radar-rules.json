@@ -10227,6 +10227,19 @@
       }
     ]
   },
+  "jgjcndrc.org.cn": {
+    "_name": "上海市人民政府",
+    "www": [
+      {
+        "title": "中华人民共和国国家发展和改革委员会价格监测中心",
+        "docs": "https://docs.rsshub.app/routes/government",
+        "source": [
+          "/list"
+        ],
+        "target": "/gov(_,url)=>{url=new URL(url);const columnId=url.searchParams.get(\"clmId\");const subColumnId=url.searchParams.get(\"sclmId\");return`/jgjcndrc${columnId?`/${columnId}${subColumnId?`/${subColumnId}`:\"\"}`:\"\"}`}"
+      }
+    ]
+  },
   "jiangsu.gov.cn": {
     "_name": "上海市人民政府",
     "wlt": [
@@ -11425,6 +11438,19 @@
           "/redianzhuanti/118742/4122386/4122510/index.html"
         ],
         "target": "/gov/pbc/zcyj"
+      }
+    ]
+  },
+  "pudong.gov.cn": {
+    "_name": "上海市人民政府",
+    "www": [
+      {
+        "title": "政务公开-浦东新区",
+        "docs": "https://docs.rsshub.app/routes/government",
+        "source": [
+          "/zwgk/zxxxgk/index.html"
+        ],
+        "target": "/gov/pudong/zwgk"
       }
     ]
   },
@@ -26452,6 +26478,19 @@
           "/v3/program/:programId"
         ],
         "target": "/tingtingfm/program/:programId"
+      }
+    ]
+  },
+  "tkww.hk": {
+    "_name": "大公文匯網",
+    "www": [
+      {
+        "title": "新聞",
+        "docs": "https://docs.rsshub.app/routes/traditional-media",
+        "source": [
+          "/:column"
+        ],
+        "target": "/tkww/:column"
       }
     ]
   },

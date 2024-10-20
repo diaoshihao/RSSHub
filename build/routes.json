@@ -16978,7 +16978,13 @@
           "dyhId": "看看号ID"
         },
         "features": {
-          "requireConfig": false,
+          "requireConfig": [
+            {
+              "name": "ALLOW_USER_HOTLINK_TEMPLATE",
+              "optional": true,
+              "description": "设置为`true`并添加`image_hotlink_template`参数来代理图片"
+            }
+          ],
           "requirePuppeteer": false,
           "antiCrawler": false,
           "supportBT": false,
@@ -17003,7 +17009,13 @@
           "period": "默认为`daily`"
         },
         "features": {
-          "requireConfig": false,
+          "requireConfig": [
+            {
+              "name": "ALLOW_USER_HOTLINK_TEMPLATE",
+              "optional": true,
+              "description": "设置为`true`并添加`image_hotlink_template`参数来代理图片"
+            }
+          ],
           "requirePuppeteer": false,
           "antiCrawler": false,
           "supportBT": false,
@@ -17027,7 +17039,13 @@
           "tag": "话题名称"
         },
         "features": {
-          "requireConfig": false,
+          "requireConfig": [
+            {
+              "name": "ALLOW_USER_HOTLINK_TEMPLATE",
+              "optional": true,
+              "description": "设置为`true`并添加`image_hotlink_template`参数来代理图片"
+            }
+          ],
           "requirePuppeteer": false,
           "antiCrawler": false,
           "supportBT": false,
@@ -17050,7 +17068,13 @@
           "type": "默认为history"
         },
         "features": {
-          "requireConfig": false,
+          "requireConfig": [
+            {
+              "name": "ALLOW_USER_HOTLINK_TEMPLATE",
+              "optional": true,
+              "description": "设置为`true`并添加`image_hotlink_template`参数来代理图片"
+            }
+          ],
           "requirePuppeteer": false,
           "antiCrawler": false,
           "supportBT": false,
@@ -17066,8 +17090,7 @@
       },
       "/tuwen/:type?": {
         "path": [
-          "/tuwen/:type?",
-          "/tuwen-xinxian"
+          "/tuwen/:type?"
         ],
         "categories": [
           "social-media"
@@ -17077,34 +17100,13 @@
           "type": "默认为hot"
         },
         "features": {
-          "requireConfig": false,
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "name": "图文",
-        "maintainers": [
-          "xizeyoupan"
-        ],
-        "description": "| 参数名称 | 编辑精选 | 最新   |\n  | -------- | -------- | ------ |\n  | type     | hot      | latest |",
-        "location": "tuwen.ts"
-      },
-      "/tuwen-xinxian": {
-        "path": [
-          "/tuwen/:type?",
-          "/tuwen-xinxian"
-        ],
-        "categories": [
-          "social-media"
-        ],
-        "example": "/coolapk/tuwen",
-        "parameters": {
-          "type": "默认为hot"
-        },
-        "features": {
-          "requireConfig": false,
+          "requireConfig": [
+            {
+              "name": "ALLOW_USER_HOTLINK_TEMPLATE",
+              "optional": true,
+              "description": "设置为`true`并添加`image_hotlink_template`参数来代理图片"
+            }
+          ],
           "requirePuppeteer": false,
           "antiCrawler": false,
           "supportBT": false,
@@ -17128,7 +17130,13 @@
           "uid": "在个人界面右上分享-复制链接获取"
         },
         "features": {
-          "requireConfig": false,
+          "requireConfig": [
+            {
+              "name": "ALLOW_USER_HOTLINK_TEMPLATE",
+              "optional": true,
+              "description": "设置为`true`并添加`image_hotlink_template`参数来代理图片"
+            }
+          ],
           "requirePuppeteer": false,
           "antiCrawler": false,
           "supportBT": false,
@@ -17143,7 +17151,8 @@
       }
     },
     "name": "酷安",
-    "url": "coolapk.com"
+    "url": "coolapk.com",
+    "description": "\n:::tip\n即日起，多数路由图片防盗链。   \n需要将 `ALLOW_USER_HOTLINK_TEMPLATE` 环境变量设置为 `true` ，然后配置`image_hotlink_template` 。   \n详见 [#16715](https://github.com/DIYgod/RSSHub/issues/16715)   \n:::"
   },
   "coomer": {
     "routes": {
@@ -29668,7 +29677,7 @@
           "he1q"
         ],
         "url": "www.customs.gov.cn/",
-        "description": ":::warning\n  由于区域限制，建议在国内 IP 的机器上自建\n  :::",
+        "description": ":::warning\n由于区域限制，建议在国内 IP 的机器上自建\n:::",
         "location": "customs/list.ts"
       },
       "/dianbai/*": {
@@ -29876,28 +29885,38 @@
         ],
         "location": "immiau/news.ts"
       },
-      "/jgjcndrc/:id?": {
-        "path": "/jgjcndrc/:id?",
+      "/jgjcndrc/:columnId?/:subColumnId?": {
+        "path": "/jgjcndrc/:columnId?/:subColumnId?",
+        "name": "中华人民共和国国家发展和改革委员会价格监测中心",
+        "url": "www.jgjcndrc.org.cn",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/gov/jgjcndrc/1832739866673426433",
+        "parameters": {
+          "columnId": "栏目 id，默认为 `1832739866673426433`，即通知公告，可在对应栏目页 URL 中找到",
+          "subColumnId": "子栏目 id，默认为空，可在对应子栏目页 URL 中找到"
+        },
+        "description": ":::tip\n  若订阅 [通知公告](https://www.jgjcndrc.org.cn/list?clmId=1832739866673426433)，网址为 `https://www.jgjcndrc.org.cn/list?clmId=1832739866673426433`。截取 `clmId` 的参数部分 `1832739866673426433` 作为参数填入，此时路由为 [`/gov/jgjcndrc/1832739866673426433`](https://rsshub.app/gov/jgjcndrc/1832739866673426433)。\n\n  若订阅 [国内外市场价格监测情况周报](https://www.jgjcndrc.org.cn/list?clmId=1832298113994649601&sclmId=1832751799531220993)，网址为 `https://www.jgjcndrc.org.cn/list?clmId=1832298113994649601&sclmId=1832751799531220993`。截取 `clmId` 和 `sclmId` 的参数部分 `1832298113994649601` 和 `1832751799531220993` 作为参数填入，此时路由为 [`/gov/jgjcndrc/1832298113994649601/1832751799531220993`](https://rsshub.app/gov/jgjcndrc/1832298113994649601/1832751799531220993)。\n  :::",
         "categories": [
           "government"
         ],
-        "example": "/gov/jgjcndrc",
-        "parameters": {
-          "id": "栏目 id，见下表，默认为 692，即通知公告"
-        },
         "features": {
           "requireConfig": false,
           "requirePuppeteer": false,
           "antiCrawler": false,
+          "supportRadar": true,
           "supportBT": false,
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "价格监测中心",
-        "maintainers": [
-          "nczitzk"
+        "radar": [
+          {
+            "source": [
+              "www.jgjcndrc.org.cn/list"
+            ]
+          }
         ],
-        "description": "| 通知公告 | 中心工作动态 | 地方工作动态 | 监测信息 | 分析预测 | 调查报告 |\n  | -------- | ------------ | ------------ | -------- | -------- | -------- |\n  | 692      | 693          | 694          | 695      | 696      | 697      |\n\n  | 价格指数 | 地方价格监测 | 价格监测报告制度 | 监测法规 | 媒体聚焦 |\n  | -------- | ------------ | ---------------- | -------- | -------- |\n  | 698      | 699          | 700              | 701      | 753      |\n\n  #### 监测信息\n\n  | 国内外市场价格监测情况周报 | 主要粮油副食品日报 | 生猪出厂价与玉米价格周报 | 国际市场石油价格每日 动态 |\n  | -------------------------- | ------------------ | ------------------------ | ------------------------- |\n  | 749                        | 703                | 704                      | 705                       |\n\n  | 非学科类培训服务价格 | 监测周期价格动态 | 月度监测行情表 | 猪料、鸡料、蛋料比价 |\n  | -------------------- | ---------------- | -------------- | -------------------- |\n  | 821                  | 706              | 707            | 708                  |",
         "location": "jgjcndrc/index.ts"
       },
       "/jiangsu/wlt/:page?": {
@@ -31640,6 +31659,34 @@
         ],
         "url": "pbc.gov.cn/redianzhuanti/118742/4122386/4122510/index.html",
         "location": "pbc/zcyj.ts"
+      },
+      "/pudong/zwgk": {
+        "path": "/pudong/zwgk",
+        "categories": [
+          "government"
+        ],
+        "example": "/gov/pudong/zwgk",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.pudong.gov.cn/zwgk/zxxxgk/index.html"
+            ],
+            "target": "/pudong/zwgk"
+          }
+        ],
+        "name": "政务公开-浦东新区",
+        "maintainers": [
+          "himingway"
+        ],
+        "location": "pudong/zwgk.ts"
       },
       "/safe/business/:site?": {
         "path": "/safe/business/:site?",
@@ -62640,7 +62687,7 @@
         "maintainers": [
           "ttttmr"
         ],
-        "description": "Specify options (in the format of query string) in parameter `routeParams` parameter to extract data from JSON.\n\n| Key           | Meaning                                  | Accepted Values | Default                                    |\n| ------------- | ---------------------------------------- | --------------- | ------------------------------------------ |\n| `title`       | The title of the RSS                     | `string`        | Extracted from home page of current domain |\n| `item`        | The JSON Path as `item` element          | `string`        | Entire JSON response                       |\n| `itemTitle`   | The JSON Path as `title` in `item`       | `string`        | None                                       |\n| `itemLink`    | The JSON Path as `link` in `item`        | `string`        | None                                       |\n| `itemDesc`    | The JSON Path as `description` in `item` | `string`        | None                                       |\n| `itemPubDate` | The JSON Path as `pubDate` in `item`     | `string`        | None                                       |\n\n:::tip\nJSON Path only supports format like `a.b.c`. if you need to access arrays, like `a[0].b`, you can write it as `a.0.b`.\n:::\n\n  Parameters parsing in the above example:\n\n  | Parameter     | Value                                                                    |\n  | ------------- | ------------------------------------------------------------------------ |\n  | `url`         | `https://api.github.com/repos/ginuerzh/gost/releases`                    |\n  | `routeParams` | `title=Gost releases&itemTitle=tag_name&itemLink=html_url&itemDesc=body` |\n\n  Parsing of `routeParams` parameter:\n\n  | Parameter   | Value           |\n  | ----------- | --------------- |\n  | `title`     | `Gost releases` |\n  | `itemTitle` | `tag_name`      |\n  | `itemLink`  | `html_url`      |\n  | `itemDesc`  | `body`          |",
+        "description": "Specify options (in the format of query string) in parameter `routeParams` parameter to extract data from JSON.\n\n| Key                | Meaning                                      | Accepted Values   | Default                                    |\n| ------------------ | -------------------------------------------- | ----------------- | ------------------------------------------ |\n| `title`          | The title of the RSS                         | `string`        | Extracted from home page of current domain |\n| `item`           | The JSON Path as `item` element            | `string`        | Entire JSON response                       |\n| `itemTitle`      | The JSON Path as `title` in `item`       | `string`        | None                                       |\n| `itemLink`       | The JSON Path as `link` in `item`        | `string`        | None                                       |\n| `itemLinkPrefix` | Optional Prefix for `itemLink` value       | `string`        | None                                       |\n| `itemDesc`       | The JSON Path as `description` in `item` | `string`        | None                                       |\n| `itemPubDate`    | The JSON Path as `pubDate` in `item`     | `string`        | None                                       |\n\n:::tip\nJSON Path only supports format like `a.b.c`. if you need to access arrays, like `a[0].b`, you can write it as `a.0.b`.\n:::\n\n  Parameters parsing in the above example:\n\n  | Parameter     | Value                                                                    |\n  | ------------- | ------------------------------------------------------------------------ |\n  | `url`         | `https://api.github.com/repos/ginuerzh/gost/releases`                    |\n  | `routeParams` | `title=Gost releases&itemTitle=tag_name&itemLink=html_url&itemDesc=body` |\n\n  Parsing of `routeParams` parameter:\n\n  | Parameter   | Value           |\n  | ----------- | --------------- |\n  | `title`     | `Gost releases` |\n  | `itemTitle` | `tag_name`      |\n  | `itemLink`  | `html_url`      |\n  | `itemDesc`  | `body`          |",
         "location": "transform/json.ts"
       },
       "/transform/sitemap/:url/:routeParams?": {
@@ -73972,6 +74019,43 @@
     },
     "name": "Tianjin University 天津大学",
     "url": "cic.tju.edu.cn"
+  },
+  "tkww": {
+    "routes": {
+      "/:column{.+}?": {
+        "path": "/:column{.+}?",
+        "categories": [
+          "traditional-media"
+        ],
+        "example": "/tkww/hong_kong",
+        "parameters": {
+          "column": "欄目，默認為 home (首頁)"
+        },
+        "features": {
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "新聞",
+        "maintainers": [
+          "quiniapiezoelectricity"
+        ],
+        "radar": [
+          {
+            "source": [
+              "www.tkww.hk/:column"
+            ],
+            "target": "/:column"
+          }
+        ],
+        "description": "\n:::tip\n欄目可用`名稱`或對應網頁的`path`，\n如 `https://www.tkww.hk/hong_kong` 的欄目可以填`香港`或是`hong_kong`\n而 `https://www.tkww.hk/china/shanghai` 的欄目則需填`china/shanghai`\n:::",
+        "location": "index.ts"
+      }
+    },
+    "name": "大公文匯網",
+    "url": "www.tkww.hk"
   },
   "tokeninsight": {
     "routes": {
